@@ -1,6 +1,7 @@
 package catolica.lojinhavirtual.CarrinhoCompras;
 
-public interface CarrinhoDeComprasRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+public interface CarrinhoDeComprasRepository extends JpaRepository<CarrinhoDeComprasModel,Long> {
 
 }
