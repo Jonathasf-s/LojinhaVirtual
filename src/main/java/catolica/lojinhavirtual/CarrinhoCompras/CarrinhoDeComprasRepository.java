@@ -1,4 +1,4 @@
-package CarrinhoCompras;
+package catolica.lojinhavirtual.CarrinhoCompras;
 
 public interface CarrinhoDeComprasRepository {
 

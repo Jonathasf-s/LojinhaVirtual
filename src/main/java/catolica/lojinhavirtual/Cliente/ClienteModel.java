@@ -1,4 +1,4 @@
-package Cliente;
+package catolica.lojinhavirtual.Cliente;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

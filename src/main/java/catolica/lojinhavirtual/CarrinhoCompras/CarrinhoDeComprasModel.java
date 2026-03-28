@@ -1,12 +1,11 @@
-package CarrinhoCompras;
+package catolica.lojinhavirtual.CarrinhoCompras;
 
-import Cliente.ClienteModel;
-import Produtos.ProdutosModel;
+import catolica.lojinhavirtual.Cliente.ClienteModel;
+import catolica.lojinhavirtual.Produtos.ProdutosModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.context.properties.bind.Name;
 
 import java.util.List;
 

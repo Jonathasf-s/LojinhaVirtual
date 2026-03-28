@@ -1,4 +1,4 @@
-package Cliente;
+package catolica.lojinhavirtual.Cliente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

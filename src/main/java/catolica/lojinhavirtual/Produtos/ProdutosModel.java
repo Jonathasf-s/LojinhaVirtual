@@ -1,4 +1,4 @@
-package Produtos;
+package catolica.lojinhavirtual.Produtos;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
