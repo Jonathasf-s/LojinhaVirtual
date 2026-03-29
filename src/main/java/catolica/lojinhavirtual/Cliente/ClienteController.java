@@ -1,9 +1,6 @@
 package catolica.lojinhavirtual.Cliente;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,11 +15,34 @@ private ClienteService clienteService;
         this.clienteService = clienteService;
     }
 
+    //Adicionar cliente
     @PostMapping("/novoUser")
-    public String NovoUsuario(){return "crie um novo usuario";}
+    public ClienteModel NovoUsuario( @RequestBody ClienteModel cliente){
+        return clienteService.criarCliente(cliente);
+    }
 
+    //Listar Clientes
     @GetMapping("/mostrarClientes")
     public List<ClienteModel>MostrarTodosClientes(){
         return clienteService.listarClientes();
     }
+
+    //listar cliente por ID
+    @GetMapping("/mostrarClientes/{id}")
+    public ClienteModel mostrarClientesId(@PathVariable Long id){return clienteService.listarClientesPorId(id);}
+
+    //deletar cliente
+    @DeleteMapping("/deletarCliente/{id}")
+    public String deletarCliente(@PathVariable Long id){
+        return "Cliente com ID" + id + "deletado";
+    }
+
+
+    //Procurar cliente por CPF
+    @GetMapping("/cpf/{cpf}")
+    public ClienteModel buscarCPF(@PathVariable String cpf){
+        return clienteService.ProcurarCPF(cpf);
+    }
+
+
 }
