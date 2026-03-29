@@ -18,7 +18,7 @@ public class CarrinhoDeComprasModel {
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        private Long CarrinhoComparsId;
+        private Long CarrinhoComprasId;
 
         @ManyToOne // relaçao entre a coluna do cliente e pedidos. um cliente pode fazer muitos pedidos
         @JoinColumn(name = "cliente_id")
