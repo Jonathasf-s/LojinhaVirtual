@@ -14,7 +14,7 @@ public class ClienteModel {
 
 
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long ClienteId; // Vai ser o Id do banco de dados
 
    private String nome;
