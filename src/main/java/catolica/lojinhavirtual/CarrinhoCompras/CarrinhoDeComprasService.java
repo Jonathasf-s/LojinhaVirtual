@@ -1,5 +1,6 @@
 package catolica.lojinhavirtual.CarrinhoCompras;
 
+import catolica.lojinhavirtual.Pagamento.PagamentoService;
 import catolica.lojinhavirtual.Produtos.ProdutosModel;
 import catolica.lojinhavirtual.Produtos.ProdutosRepository;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,7 @@ public class CarrinhoDeComprasService {
         this.carrinhoDeComprasRepository = carrinhoDeComprasRepository;
     }
 
-    // Salvar no carrinho
-    public CarrinhoDeComprasModel finalizarCompra(CarrinhoDeComprasModel carrinho){
-        return carrinhoDeComprasRepository.save(carrinho);
-    }
+
 
     //Soma dos produtos
     public double calcularTotal(Long carrinhoId){
@@ -42,6 +40,25 @@ public class CarrinhoDeComprasService {
     // Buscar por ID
     public CarrinhoDeComprasModel buscarId(Long id){
         return carrinhoDeComprasRepository.findById(id).orElse(null);
+    }
+
+
+    public CarrinhoDeComprasModel finalizarCompra(CarrinhoDeComprasModel carrinho) {
+        // 1. Calcula o total
+        double total = carrinho.getProdutos().stream()
+                .mapToDouble(p -> p.getProdutosValor())
+                .sum();
+
+        // 2. Chama o SINGLETON de pagamento
+        PagamentoService pagamentoSaas = PagamentoService.getInstancia();
+        boolean sucesso = pagamentoSaas.processar(total, carrinho.getPagamento());
+
+        if (sucesso) {
+            System.out.println("Pagamento Aprovado!");
+            return carrinhoDeComprasRepository.save(carrinho);
+        } else {
+            throw new RuntimeException("Pagamento Recusado pelo Sistema Externo");
+        }
     }
 
 }
